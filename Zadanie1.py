@@ -2,6 +2,7 @@ from math import *
 
 listaD = []
 
+
 class PierwszaKlasa:
     def __init__(self, x, y, g, rodzic):
         self.x = x
@@ -28,6 +29,7 @@ def wczytanie():
     listaD.reverse()
     print(listaD)
 
+
 # wyswietlenie mapy jako macierz
 def wyswietl():
     for i in range(0, 20, 1):
@@ -37,14 +39,28 @@ def wyswietl():
             wiersz += " "
         print(wiersz)
 
+
 def TworzyObiekty(rodzic):
-    if rodzic.x +1 >= 0 and rodzic.x +1 < 20:
+    if rodzic.x+1 >= 0 and rodzic.x+1 < 20:
         if rodzic.y >= 0 and rodzic.y < 20:
-            if listaD[rodzic.x+1][rodzic.y] == 0:
-                PierwszaKlasa(rodzic.x+1, rodzic.y, rodzic.g+1, rodzic)
+            if listaD[rodzic.x + 1][rodzic.y] == 0:
+                PierwszaKlasa(rodzic.x+1, rodzic.y, rodzic.g + 1, rodzic)
+    if rodzic.x >= 0 and rodzic.x< 20:
+        if rodzic.y+1 >= 0 and rodzic.y+1 < 20:
+            if listaD[rodzic.x][rodzic.y+1] == 0:
+                PierwszaKlasa(rodzic.x, rodzic.y+1, rodzic.g + 1, rodzic)
+    if rodzic.x-1 >= 0 and rodzic.x-1 < 20:
+        if rodzic.y >= 0 and rodzic.y < 20:
+            if listaD[rodzic.x - 1][rodzic.y] == 0:
+                PierwszaKlasa(rodzic.x-1, rodzic.y, rodzic.g + 1, rodzic)
+    if rodzic.x >= 0 and rodzic.x< 20:
+        if rodzic.y-1 >= 0 and rodzic.y-1 < 20:
+            if listaD[rodzic.x][rodzic.y-1] == 0:
+                PierwszaKlasa(rodzic.x, rodzic.y-1, rodzic.g + 1, rodzic)
+
 
 wczytanie()
 wyswietl()
 otwarta = []
 zamknieta = []
-zamknieta.append(PierwszaKlasa(0,0,0,None))
+zamknieta.append(PierwszaKlasa(0, 0, 0, None))
