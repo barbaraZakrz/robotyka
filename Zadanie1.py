@@ -7,7 +7,8 @@ for i in range(0, 20, 1):
     for j in range(0, 39, 2):
         lista.append(int(wiersz[j]))
     #print(lista)
-    print("----------------------------------------")
+    #print("----------------------------------------")
     listaD.append(lista)
+
 
 print(listaD)
