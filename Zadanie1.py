@@ -39,24 +39,31 @@ def wyswietl():
             wiersz += " "
         print(wiersz)
 
-
+#tworzenie obiektów sąsiadujących z rodzicem
 def TworzyObiekty(rodzic):
     if rodzic.x+1 >= 0 and rodzic.x+1 < 20:
         if rodzic.y >= 0 and rodzic.y < 20:
             if listaD[rodzic.x + 1][rodzic.y] == 0:
-                PierwszaKlasa(rodzic.x+1, rodzic.y, rodzic.g + 1, rodzic)
+                otwarta.append(PierwszaKlasa(rodzic.x+1, rodzic.y, rodzic.g + 1, rodzic))
     if rodzic.x >= 0 and rodzic.x< 20:
         if rodzic.y+1 >= 0 and rodzic.y+1 < 20:
             if listaD[rodzic.x][rodzic.y+1] == 0:
-                PierwszaKlasa(rodzic.x, rodzic.y+1, rodzic.g + 1, rodzic)
+                otwarta.append(PierwszaKlasa(rodzic.x, rodzic.y+1, rodzic.g + 1, rodzic))
     if rodzic.x-1 >= 0 and rodzic.x-1 < 20:
         if rodzic.y >= 0 and rodzic.y < 20:
             if listaD[rodzic.x - 1][rodzic.y] == 0:
-                PierwszaKlasa(rodzic.x-1, rodzic.y, rodzic.g + 1, rodzic)
+                otwarta.append(PierwszaKlasa(rodzic.x-1, rodzic.y, rodzic.g + 1, rodzic))
     if rodzic.x >= 0 and rodzic.x< 20:
         if rodzic.y-1 >= 0 and rodzic.y-1 < 20:
             if listaD[rodzic.x][rodzic.y-1] == 0:
-                PierwszaKlasa(rodzic.x, rodzic.y-1, rodzic.g + 1, rodzic)
+                otwarta.append(PierwszaKlasa(rodzic.x, rodzic.y-1, rodzic.g + 1, rodzic))
+
+def minimum(lista):
+    min = lista[0]
+    for i in lista:
+        if i.f < min.f:
+            min = i
+    return min
 
 
 wczytanie()
@@ -64,3 +71,10 @@ wyswietl()
 otwarta = []
 zamknieta = []
 zamknieta.append(PierwszaKlasa(0, 0, 0, None))
+doPorownania = minimum(otwarta)
+for i in zamknieta:
+    if doPorownania.x == i.x and doPorownania.y == i.y:
+        if doPorownania.f < i.f:
+            i = doPorownania
+            
+
