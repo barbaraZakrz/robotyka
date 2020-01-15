@@ -71,10 +71,19 @@ wyswietl()
 otwarta = []
 zamknieta = []
 zamknieta.append(PierwszaKlasa(0, 0, 0, None))
-doPorownania = minimum(otwarta)
-for i in zamknieta:
-    if doPorownania.x == i.x and doPorownania.y == i.y:
-        if doPorownania.f < i.f:
-            i = doPorownania
-            
+
+while 1:
+    TworzyObiekty(zamknieta[len(zamknieta) -1])
+    doPorownania = minimum(otwarta)
+    flaga = 0
+    for i in zamknieta:
+        if doPorownania.x == i.x and doPorownania.y == i.y:
+            if doPorownania.f < i.f:
+                i = doPorownania
+            flaga = 1
+    if flaga == 0:
+        zamknieta.append(doPorownania)
+    if otwarta == [] or (zamknieta[len(zamknieta)-1].x == 19 and zamknieta[len(zamknieta)-1].y == 19):
+        break
+
 
