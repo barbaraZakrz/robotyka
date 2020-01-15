@@ -65,6 +65,18 @@ def minimum(lista):
             min = i
     return min
 
+def WyswietlTrase(obiekt):
+    trasa = []
+    for i in range(g):
+        para = []
+        para.append(obiekt.x)
+        para.append(obiekt.y)
+        trasa.append(para)
+        obiekt = obiekt.rodzic
+    trasa.reverse()
+    return trasa
+
+
 
 wczytanie()
 wyswietl()
@@ -81,9 +93,15 @@ while 1:
             if doPorownania.f < i.f:
                 i = doPorownania
             flaga = 1
+            otwarta.remove(doPorownania)
     if flaga == 0:
         zamknieta.append(doPorownania)
-    if otwarta == [] or (zamknieta[len(zamknieta)-1].x == 19 and zamknieta[len(zamknieta)-1].y == 19):
+        otwarta.remove(doPorownania)
+    if otwarta == []:
+        print("nie ma")
+        break
+    if zamknieta[len(zamknieta)-1].x == 19 and zamknieta[len(zamknieta)-1].y == 19:
+        print(WyswietlTrase())
         break
 
 
