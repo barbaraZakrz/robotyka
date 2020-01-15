@@ -1,6 +1,8 @@
 from math import *
 
 listaD = []
+otwarta = []
+zamknieta = []
 
 
 class PierwszaKlasa:
@@ -27,7 +29,7 @@ def wczytanie():
         listaD.append(lista)
     # print(listaD)
     listaD.reverse()
-    print(listaD)
+    #print(listaD)
 
 
 # wyswietlenie mapy jako macierz
@@ -39,24 +41,35 @@ def wyswietl():
             wiersz += " "
         print(wiersz)
 
+def dodajDoOtwarteej(doPorownania):
+    flaga = 0
+    for i in otwarta:
+        if doPorownania.x == i.x and doPorownania.y == i.y:
+            if doPorownania.f < i.f:
+                i = doPorownania
+            flaga = 1
+    if flaga == 0:
+        otwarta.append(doPorownania)
+
+
 #tworzenie obiektów sąsiadujących z rodzicem
 def TworzyObiekty(rodzic):
     if rodzic.x+1 >= 0 and rodzic.x+1 < 20:
         if rodzic.y >= 0 and rodzic.y < 20:
             if listaD[rodzic.x + 1][rodzic.y] == 0:
-                otwarta.append(PierwszaKlasa(rodzic.x+1, rodzic.y, rodzic.g + 1, rodzic))
+                dodajDoOtwarteej(PierwszaKlasa(rodzic.x+1, rodzic.y, rodzic.g + 1, rodzic))
     if rodzic.x >= 0 and rodzic.x< 20:
         if rodzic.y+1 >= 0 and rodzic.y+1 < 20:
             if listaD[rodzic.x][rodzic.y+1] == 0:
-                otwarta.append(PierwszaKlasa(rodzic.x, rodzic.y+1, rodzic.g + 1, rodzic))
+                dodajDoOtwarteej(PierwszaKlasa(rodzic.x, rodzic.y+1, rodzic.g + 1, rodzic))
     if rodzic.x-1 >= 0 and rodzic.x-1 < 20:
         if rodzic.y >= 0 and rodzic.y < 20:
             if listaD[rodzic.x - 1][rodzic.y] == 0:
-                otwarta.append(PierwszaKlasa(rodzic.x-1, rodzic.y, rodzic.g + 1, rodzic))
+                dodajDoOtwarteej(PierwszaKlasa(rodzic.x-1, rodzic.y, rodzic.g + 1, rodzic))
     if rodzic.x >= 0 and rodzic.x< 20:
         if rodzic.y-1 >= 0 and rodzic.y-1 < 20:
             if listaD[rodzic.x][rodzic.y-1] == 0:
-                otwarta.append(PierwszaKlasa(rodzic.x, rodzic.y-1, rodzic.g + 1, rodzic))
+                dodajDoOtwarteej(PierwszaKlasa(rodzic.x, rodzic.y-1, rodzic.g + 1, rodzic))
 
 def minimum(lista):
     min = lista[0]
@@ -67,7 +80,7 @@ def minimum(lista):
 
 def WyswietlTrase(obiekt):
     trasa = []
-    for i in range(g):
+    for i in range(obiekt.g):
         para = []
         para.append(obiekt.x)
         para.append(obiekt.y)
@@ -80,8 +93,6 @@ def WyswietlTrase(obiekt):
 
 wczytanie()
 wyswietl()
-otwarta = []
-zamknieta = []
 zamknieta.append(PierwszaKlasa(0, 0, 0, None))
 
 while 1:
