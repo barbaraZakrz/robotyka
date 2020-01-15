@@ -43,6 +43,10 @@ def wyswietl():
 
 def dodajDoOtwarteej(doPorownania):
     flaga = 0
+    for i in zamknieta:
+        if doPorownania.x == i.x and doPorownania.y == i.y:
+            if doPorownania.f >= i.f:
+                return 0
     for i in otwarta:
         if doPorownania.x == i.x and doPorownania.y == i.y:
             if doPorownania.f < i.f:
@@ -89,11 +93,26 @@ def WyswietlTrase(obiekt):
     trasa.reverse()
     return trasa
 
+def ZmienMape(obiekt):
+    for i in range(obiekt.g+1):
+        listaD[obiekt.x][obiekt.y] = 1
+        obiekt = obiekt.rodzic
+    wyswietl()
 
+def WyswietlListe(lista):
+    string = ""
+
+    for i in lista:
+        string +=str(i.x)
+        string += " "
+        string+= str(i.y)
+        string += ", "
+    print(string)
 
 wczytanie()
 wyswietl()
 zamknieta.append(PierwszaKlasa(0, 0, 0, None))
+nr = 0
 
 while 1:
     TworzyObiekty(zamknieta[len(zamknieta) -1])
@@ -112,7 +131,16 @@ while 1:
         print("nie ma")
         break
     if zamknieta[len(zamknieta)-1].x == 19 and zamknieta[len(zamknieta)-1].y == 19:
-        print(WyswietlTrase())
+        #print(WyswietlTrase(zamknieta[len(zamknieta)-1]))
+        print()
+        ZmienMape(zamknieta[len(zamknieta)-1])
         break
+    #nr += 1
+    #print(nr)
+    #print("zamknietaL ")
+    #WyswietlListe(zamknieta)
+    #print("otwrrta: ")
+    #WyswietlListe(otwarta)
+
 
 
